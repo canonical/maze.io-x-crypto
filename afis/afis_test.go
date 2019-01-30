@@ -2,6 +2,8 @@ package afis
 
 import (
 	"bytes"
+	"crypto/rand"
+	"io"
 	"testing"
 )
 
@@ -34,5 +36,28 @@ func TestAFIS(t *testing.T) {
 				t.Fatalf("expected %q, got %q", vector.data, merged)
 			}
 		})
+	}
+}
+
+func ExampleMerge() {
+	secretKey := make([]byte, 16)
+	if _, err := io.ReadFull(rand.Reader, secretKey); err != nil {
+		panic(err)
+	}
+
+	// Split the original data using 4 stripes.
+	scrambled, err := Split(secretKey, 4)
+	if err != nil {
+		panic(err)
+	}
+
+	// Merge back
+	key, err := Merge(scrambled, 4)
+	if err != nil {
+		panic(err)
+	}
+
+	if !bytes.Equal(key, secretKey) {
+		panic("merge failed")
 	}
 }

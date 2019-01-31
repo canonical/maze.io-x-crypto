@@ -16,8 +16,11 @@ Split operates on data and returns information splitted data. Merge does
 just the opposite: uses the information stored in data to recover the original
 splitted data.
 
-References:
-  * AFsplitter reference implementation at http://clemens.endorphin.org/AFsplitter
-  * TKS1 paper at http://clemens.endorphin.org/TKS1-draft.pdf
+
+References
+
+AFsplitter reference implementation at http://clemens.endorphin.org/AFsplitter
+
+TKS1 paper at http://clemens.endorphin.org/TKS1-draft.pdf
 */
 package afis
